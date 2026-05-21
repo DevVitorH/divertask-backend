@@ -9,6 +9,9 @@ exports.register = async (req, res) => {
     if (!username || !password) {
       return res.status(400).json({ message: 'Usuário e senha são obrigatórios.' });
     }
+    if (password.length < 6) {
+    return res.status(400).json({ message: 'A senha deve ter no mínimo 6 caracteres.' });
+}
 
     // O beforeCreate do Model já vai encriptar a senha automaticamente
     const user = await User.create({ username, password });
