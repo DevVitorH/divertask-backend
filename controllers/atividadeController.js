@@ -15,7 +15,7 @@ exports.createAtividade = async (req, res) => {
     const novaAtividade = await Atividade.create({
       atividade,
       horario,
-      userId: req.user.id // Pega o ID do token JWT
+      userId: req.user.id 
     });
     res.status(201).json(novaAtividade);
   } catch (error) {

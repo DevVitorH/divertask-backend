@@ -3,7 +3,6 @@ const router = express.Router();
 const atividadeController = require('../controllers/atividadeController');
 const { authenticateToken } = require('../middlewares/authMiddleware');
 
-// Protege todas as rotas de atividades
 router.use(authenticateToken);
 
 router.get('/activities', atividadeController.getAtividades);

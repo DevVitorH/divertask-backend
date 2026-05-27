@@ -24,7 +24,6 @@ exports.uploadFoto = async (req, res) => {
 
 exports.getPerfil = async (req, res) => {
   try {
-    // Busca apenas o nome de usuário e a foto do banco de dados
     const user = await User.findByPk(req.user.id, {
       attributes: ['username', 'fotoPerfil'] 
     });

@@ -1,12 +1,10 @@
-require('dotenv').config(); // Carrega as variáveis do arquivo .env (como o JWT_SECRET)
+require('dotenv').config(); 
 const app = require('./app');
-const db = require('./models'); // Importa o Sequelize e seus modelos
+const db = require('./models'); 
 const PORT = process.env.PORT || 3000;
 
 async function startServer() {
   try {
-    // Sincroniza os Modelos com o MySQL (cria a tabela de usuários automaticamente se não existir)
-    await db.sequelize.sync({ alter: true });
     console.log('DB sincronizado com sucesso!');
     
     app.listen(PORT, () => {

@@ -38,8 +38,12 @@ Back-end do aplicativo **DiverTask**, um gerenciador de tarefas e atividades rot
    DB_NAME=divertask_db
    JWT_SECRET=sua_chave_secreta_super_segura
    ```
+4. **Crie as tabelas no banco de dados:**
+   Execute as migrations para estruturar o banco de dados de forma segura:
+   ```bash
+   npx sequelize-cli db:migrate
 
-4. **Inicie o servidor:**
+5. **Inicie o servidor:**
    ```bash
    npm run dev
    ```
@@ -81,5 +85,5 @@ Back-end do aplicativo **DiverTask**, um gerenciador de tarefas e atividades rot
 
 O desenvolvimento seguiu princípios de Clean Code e Segurança da Informação:
 * **Criptografia:** Senhas protegidas no banco de dados utilizando `bcrypt` (salt + hash).
-* **Padrão MVC:** Lógica de negócios (`controllers`), acesso a dados (`models`) e exposição de endpoints (`routes`) estritamente separados.
+* **Padrão MVC e Migrations:** Lógica de negócios (`controllers`), acesso e modelagem de dados (`models`), controle estrutural e versionamento do banco de dados (`migrations`) e exposição de endpoints (`routes`) estritamente separados.
 * **Middlewares de Segurança:** Uso de `authMiddleware.js` para interceptar e validar requisições privadas, garantindo a integridade da sessão via JWT.

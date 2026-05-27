@@ -4,7 +4,6 @@ const router = express.Router();
 const taskController = require('../controllers/taskController');
 const { authenticateToken } = require('../middlewares/authMiddleware');
 
-// O middleware é aplicado a TODAS as rotas abaixo automaticamente
 router.use(authenticateToken);
 
 router.post('/tasks', taskController.createTask);

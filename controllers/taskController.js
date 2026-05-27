@@ -1,7 +1,5 @@
-// controllers/taskController.js
 const { Task } = require('../models');
 
-// CREATE: Cria uma nova tarefa para o usuário logado
 exports.createTask = async (req, res) => {
   try {
     const { titulo, descricao, prioridade } = req.body;
@@ -9,7 +7,7 @@ exports.createTask = async (req, res) => {
       titulo,
       descricao,
       prioridade,
-      userId: req.user.id // O ID vem automaticamente do token validado!
+      userId: req.user.id 
     });
     res.status(201).json(task);
   } catch (error) {
@@ -17,7 +15,6 @@ exports.createTask = async (req, res) => {
   }
 };
 
-// READ: Busca apenas as tarefas do usuário logado
 exports.getTasks = async (req, res) => {
   try {
     const tasks = await Task.findAll({ where: { userId: req.user.id } });
@@ -27,7 +24,6 @@ exports.getTasks = async (req, res) => {
   }
 };
 
-// UPDATE: Atualiza uma tarefa (se pertencer ao usuário)
 exports.updateTask = async (req, res) => {
   try {
     const { id } = req.params;
@@ -46,7 +42,6 @@ exports.updateTask = async (req, res) => {
   }
 };
 
-// DELETE: Exclui uma tarefa
 exports.deleteTask = async (req, res) => {
   try {
     const { id } = req.params;

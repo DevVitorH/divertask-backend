@@ -13,7 +13,6 @@ exports.register = async (req, res) => {
     return res.status(400).json({ message: 'A senha deve ter no mínimo 6 caracteres.' });
 }
 
-    // O beforeCreate do Model já vai encriptar a senha automaticamente
     const user = await User.create({ username, password });
     const token = generateAccessToken(user);
 
@@ -27,23 +26,20 @@ exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
     
-    // Passo 1: Encontrar o usuário
     const user = await User.findOne({ where: { username } });
     if (!user) {
       return res.status(401).json({ message: 'Credenciais inválidas.' });
     }
 
-    // Passo 2: Comparar a senha pura com o hash do banco
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Credenciais inválidas.' });
     }
 
-    // Passo 3: Gerar token de sucesso
     const token = generateAccessToken(user);
     return res.status(200).json({
       message: 'Login bem-sucedido!',
-      token: token, // MUDAMOS DE accessToken PARA token!
+      token: token, 
       expiresIn: process.env.TOKEN_EXPIRATION
     });
   } catch (error) {

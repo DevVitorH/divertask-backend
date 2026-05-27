@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  // Se quiser associar a atividade ao usuário logado (recomendado)
   Atividade.associate = (models) => {
     Atividade.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
   };
